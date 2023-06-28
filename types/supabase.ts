@@ -3,7 +3,7 @@ export type Json =
   | number
   | boolean
   | null
-  | { [key: string]: Json }
+  | { [key: string]: Json | undefined }
   | Json[]
 
 export interface Database {
@@ -34,20 +34,33 @@ export interface Database {
   }
   public: {
     Tables: {
-      posts: {
+      profiles: {
         Row: {
-          created_at: string | null
-          id: number
+          first_name: string | null
+          id: string
+          last_name: string | null
+          username: string
         }
         Insert: {
-          created_at?: string | null
-          id?: number
+          first_name?: string | null
+          id: string
+          last_name?: string | null
+          username: string
         }
         Update: {
-          created_at?: string | null
-          id?: number
+          first_name?: string | null
+          id?: string
+          last_name?: string | null
+          username?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "profiles_id_fkey"
+            columns: ["id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
     }
     Views: {

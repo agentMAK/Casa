@@ -10,9 +10,6 @@ export default function Home() {
   const supabase = createClientComponentClient<Database>()
   const router = useRouter()
 
-  const email = "martin0044@gmail.com"
-  const password = "example-password"
-
   const handleSignIn = async () => {
     const {data , error} = await supabase.auth.signInWithOAuth({
       provider: 'google',
@@ -31,7 +28,14 @@ export default function Home() {
     console.log(data)
   }
 
-  
+  const getProfile = async () => {
+    const { data, error } = await supabase
+    .from('profiles')
+    .select()
+    console.log(data)
+  }
+
+
 
   return (
     <Flex
@@ -44,6 +48,7 @@ export default function Home() {
       <Button onClick={handleSignIn}>Sign in with Google</Button>
       <Button onClick={handleSignOut}>Sign out</Button>
       <Button onClick={handleSession}>Get Session</Button>
+      <Button onClick={getProfile}>Get Profile</Button>
     </Flex>
   );
 }
