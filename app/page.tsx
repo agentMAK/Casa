@@ -13,25 +13,13 @@ export default function Home() {
   const email = "martin0044@gmail.com"
   const password = "example-password"
 
-  const handleSignUp = async () => {
-    const { data, error } = await supabase.auth.signUp({
-      email: email,
-      password: password,
-      options: {
-        emailRedirectTo: `${location.origin}/auth/callback`,
-      },
-    });
+  const handleSignIn = async () => {
+    const {data , error} = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+    })
     console.log(data)
   };
 
-  const handleSignIn = async () => {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    })
-    console.log(data)
-    router.refresh()
-  }
 
   const handleSignOut = async () => {
     await supabase.auth.signOut()
@@ -53,8 +41,7 @@ export default function Home() {
       flexDirection={"column"}
     >
       <Text>hello World</Text>
-      <Button onClick={handleSignUp}>Sign up</Button>
-      <Button onClick={handleSignIn}>Sign in</Button>
+      <Button onClick={handleSignIn}>Sign in with Google</Button>
       <Button onClick={handleSignOut}>Sign out</Button>
       <Button onClick={handleSession}>Get Session</Button>
     </Flex>
