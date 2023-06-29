@@ -32,7 +32,7 @@ export default function Home() {
       .insert({ user_id:session?.user.id as string, first_name:firstName,last_name:lastName,username:username });
     console.log(status)
     if(status === 201) {
-      router.push('/')
+      router.push(`/profile/${username}`)
     }
   };
 
