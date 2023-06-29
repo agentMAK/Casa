@@ -15,6 +15,9 @@ type CreateProfileType = {
   setFirstName: (firstName: string) => void;
   setLastName: (lastName: string) => void;
   setUsername: (username: string) => void;
+  firstName:string;
+  lastName:string;
+  username:string;
 };
 
 const CreateProfile = ({
@@ -22,6 +25,9 @@ const CreateProfile = ({
   setFirstName,
   setLastName,
   setUsername,
+  firstName,
+  lastName,
+  username
 }: CreateProfileType) => {
   return (
     <Box>
@@ -36,11 +42,11 @@ const CreateProfile = ({
 
       <FormControl>
         <FormLabel>First Name</FormLabel>
-        <Input onChange={(e) => setFirstName(e.target.value)} />
+        <Input onChange={(e) => setFirstName(e.target.value)} value={firstName} />
         <FormLabel>Last Name</FormLabel>
-        <Input onChange={(e) => setLastName(e.target.value)} />
+        <Input onChange={(e) => setLastName(e.target.value)} value={lastName} />
         <FormLabel>Claim username</FormLabel>
-        <Input mb={"5px"} onChange={(e) => setUsername(e.target.value)} />
+        <Input mb={"5px"} onChange={(e) => setUsername(e.target.value)} value={username}/>
         <Button width={"100%"} onClick={() => setCurrentCard("add-photo")}>
           Continue
         </Button>

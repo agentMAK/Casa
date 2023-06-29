@@ -1,18 +1,17 @@
 import { Chakra } from "./components/Charka";
 import { RainbowKit } from "./components/RainbowKit";
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return (
+    return (
     <html lang="en">
       <body>
         <Chakra>
-            {/* <RainbowKit> */}
-              {children}
-              {/* </RainbowKit> */}
+          {/* <RainbowKit> */}
+          {children}
+          {/* </RainbowKit> */}
         </Chakra>
       </body>
     </html>

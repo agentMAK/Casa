@@ -37,26 +37,26 @@ export interface Database {
       profiles: {
         Row: {
           first_name: string | null
-          id: string
           last_name: string | null
+          user_id: string
           username: string
         }
         Insert: {
           first_name?: string | null
-          id: string
           last_name?: string | null
+          user_id: string
           username: string
         }
         Update: {
           first_name?: string | null
-          id?: string
           last_name?: string | null
+          user_id?: string
           username?: string
         }
         Relationships: [
           {
-            foreignKeyName: "profiles_id_fkey"
-            columns: ["id"]
+            foreignKeyName: "profiles_user_id_fkey"
+            columns: ["user_id"]
             referencedRelation: "users"
             referencedColumns: ["id"]
           }

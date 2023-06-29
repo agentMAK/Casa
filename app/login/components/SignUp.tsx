@@ -25,8 +25,8 @@ const SignUp = ({ setEmail }: SignUpType) => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${location.origin}/join`,
-      },
+        redirectTo: `${location.origin}/auth/callback`,
+      }
     });
   };
 

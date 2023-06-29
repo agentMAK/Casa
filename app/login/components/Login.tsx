@@ -10,8 +10,6 @@ import {
 } from "@chakra-ui/react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/types/supabase";
-import { LoginCardsType } from "../page";
-import { useRouter } from "next/navigation";
 
 type LoginType = {
   setEmail: (value: string) => void;
@@ -19,17 +17,15 @@ type LoginType = {
 
 const Login = ({ setEmail }: LoginType) => {
   const supabase = createClientComponentClient<Database>();
-  const router = useRouter();
 
   const handleSignInGoogle = async () => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${location.origin}/`,
-      },
+        redirectTo: `${location.origin}/auth/callback`,
+      }
     });
   };
-
   return (
     <Box>
       {/* <Text

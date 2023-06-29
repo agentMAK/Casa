@@ -13,10 +13,12 @@ export default function Home() {
   const handleSignIn = async () => {
     const {data , error} = await supabase.auth.signInWithOAuth({
       provider: 'google',
+      options: {
+        redirectTo: `${location.origin}/auth/callback`,
+      }
     })
     console.log(data)
   };
-
 
   const handleSignOut = async () => {
     await supabase.auth.signOut()
@@ -34,8 +36,6 @@ export default function Home() {
     .select()
     console.log(data)
   }
-
-
 
   return (
     <Flex
