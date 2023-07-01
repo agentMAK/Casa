@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   Text,
+  Image,
   Input,
   FormControl,
   FormLabel,
@@ -23,27 +24,37 @@ const Login = ({ setEmail }: LoginType) => {
       provider: "google",
       options: {
         redirectTo: `${location.origin}/auth/callback`,
-      }
+      },
     });
   };
   return (
     <Box>
-      {/* <Text
-        fontWeight={"medium"}
-        mb={"5px"}
-        fontSize={"24px"}
-        textAlign={"center"}
-      >
-        What&apos;s your email?
-      </Text>
-      <Text fontSize={"14px"} textAlign={"center"} mb={"5px"}>
+      <Box mb={"32px"}>
+        <Text
+          fontWeight={"medium"}
+          mb={"5px"}
+          fontSize={"28px"}
+          textAlign={"center"}
+        >
+          Join us 🥳
+        </Text>
+        {/* <Text fontSize={"14px"} textAlign={"center"} mb={"5px"}>
         No spam, our promise 🤝
       </Text> */}
+      </Box>
       {/* <FormControl mb="10px">
         <FormLabel>Email</FormLabel>
         <Input type="email" placeholder="Enter email address" onChange={(e) => setEmail(e.target.value)} />
       </FormControl> */}
-      <Button width={"100%"} onClick={handleSignInGoogle}>Continue with Google</Button>
+      <Button variant={"clear"} width={"100%"} onClick={handleSignInGoogle}>
+        <Image
+          src={"/images/google.svg"}
+          alt={"Google"}
+          height={"20px"}
+          mr={"10px"}
+        />
+        Continue with Google
+      </Button>
       {/* <Button width={"100%"} onClick={() => setCurrentCard("enter-code")}>
         Continue
       </Button> */}

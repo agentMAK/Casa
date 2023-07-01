@@ -1,5 +1,7 @@
 'use client'
 
+import Fonts from '@/theme/fonts'
+import theme from '@/theme/theme'
 import { CacheProvider } from '@chakra-ui/next-js'
 import { ChakraProvider } from '@chakra-ui/react'
 
@@ -10,7 +12,8 @@ export function Chakra({
   }) {
   return (
     <CacheProvider>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
+        <Fonts />
         {children}
       </ChakraProvider>
     </CacheProvider>

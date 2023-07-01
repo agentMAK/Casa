@@ -18,10 +18,8 @@ export default async function RootLayout({
     .from("profiles")
     .select().eq('user_id',session?.user.id);
 
-  console.log(session);
-
   if (profileData && profileData?.length > 0) {
-    redirect("/");
+    redirect(`/profile/${profileData[0].username}`);
   }
 
   if (session) {

@@ -23,6 +23,6 @@ export default async function RootLayout({
     return <>{children}</>;
   }
 
-  redirect('/')
+  redirect('/login')
 
 }

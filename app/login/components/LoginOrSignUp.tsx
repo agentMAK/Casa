@@ -2,13 +2,14 @@
 
 import {
   Box,
-  Button,
   Text,
   Input,
   InputGroup,
   InputLeftAddon,
 } from "@chakra-ui/react";
 import { LoginCardsType } from "../page";
+
+import { Button } from '../../components/Button'
 
 type LoginOrSignUpType = {
   setCurrentCard: (card: keyof LoginCardsType) => void;
@@ -19,22 +20,14 @@ const LoginOrSignUp = ({ setCurrentCard }: LoginOrSignUpType) => {
     <Box>
       <Text
         fontWeight={"medium"}
-        mb={"5px"}
+        mb={"50px"}
         fontSize={"24px"}
         textAlign={"center"}
       >
         Your digital home on the internet
       </Text>
-      <Button
-        width={"100%"}
-        onClick={() => setCurrentCard("sign-up")}
-        mb={"5px"}
-      >
-        Get Started
-      </Button>
-      <Button width={"100%"} onClick={() => setCurrentCard("login")} mb={"5px"}>
-        Login
-      </Button>
+      <Button variant={'dark'} onClick={() => setCurrentCard("sign-up")} mb={'10px'}>Get Started</Button>
+      <Button variant={'clear'} onClick={() => setCurrentCard("login")}>Login</Button>
     </Box>
   );
 };

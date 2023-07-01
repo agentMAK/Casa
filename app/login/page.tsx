@@ -21,7 +21,6 @@ export default function Home() {
 
   const [email, setEmail] = useState<string>("");
 
-
   const handleSubmit = async () => {};
 
   const loginCards: LoginCardsType = {
