@@ -25,7 +25,7 @@ export default function Home() {
 
   const loginCards: LoginCardsType = {
     "login-or-signup": <LoginOrSignUp setCurrentCard={setCurrentCard} />,
-    "login": <Login setEmail={setEmail} />,
+    login: <Login setEmail={setEmail} />,
     "enter-code": <EnterCode setCurrentCard={setCurrentCard} />,
     "sign-up": <SignUp setEmail={setEmail} />,
   };

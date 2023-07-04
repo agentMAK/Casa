@@ -12,17 +12,18 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const supabase = createServerComponentClient<Database>({ cookies });
-  const { data: {session}, error: sessionError } =
-    await supabase.auth.getSession();
+  const {
+    data: { session },
+    error: sessionError,
+  } = await supabase.auth.getSession();
 
   const { data: profileData, error: profileError } = await supabase
     .from("profiles")
     .select();
 
-  if((profileData && profileData?.length === 0) && session) {
+  if (profileData && profileData?.length === 0 && session) {
     return <>{children}</>;
   }
 
-  redirect('/login')
-
+  redirect("/login");
 }

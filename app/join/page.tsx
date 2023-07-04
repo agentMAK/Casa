@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Flex } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export type SignUpCardsType = {
   "create-profile": JSX.Element;
@@ -10,7 +10,10 @@ export type SignUpCardsType = {
 
 import CreateProfile from "./components/CreateProfile";
 import AddPhoto from "./components/AddPhoto";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import {
+  Session,
+  createClientComponentClient,
+} from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/types/supabase";
 import { useRouter } from "next/navigation";
 
@@ -18,21 +21,43 @@ export default function Home() {
   const [currentCard, setCurrentCard] =
     useState<keyof SignUpCardsType>("create-profile");
 
-  const supabase = createClientComponentClient<Database>()
-  const router = useRouter()
+  const supabase = createClientComponentClient<Database>();
+  const router = useRouter();
+  const [session, setSession] = useState<Session | null>(null);
 
-  const [username, setUsername] = useState<string>("martin0044");
+  const [username, setUsername] = useState<string>("martinkaby");
   const [firstName, setFirstName] = useState<string>("Martin");
-  const [lastName, setLastName] = useState<string>("Kabyemela");
+  const [lastName, setLastName] = useState<string>("K");
+  const [avatarPath, setAvatarPath] = useState<string>("");
+
+  useEffect(() => {
+    async function getSession() {
+      try {
+        const { data, error } = await supabase.auth.getSession();
+        if (error) {
+          throw error;
+        }
+        setSession(data.session);
+      } catch (error) {
+        console.log("Error loading session: ", error);
+      }
+    }
+    getSession();
+  }, [supabase.auth]);
 
   const handleSubmit = async () => {
-    const { data: { session }, error:sessionError } = await supabase.auth.getSession()
-    const { status, error }  = await supabase
+    const { status, error } = await supabase
       .from("profiles")
-      .insert({ user_id:session?.user.id as string, first_name:firstName,last_name:lastName,username:username });
-    console.log(status)
-    if(status === 201) {
-      router.push(`/profile/${username}`)
+      .insert({
+        user_id: session?.user.id as string,
+        first_name: firstName,
+        last_name: lastName,
+        username: username,
+        avatar_path: avatarPath,
+      });
+    console.log(status);
+    if (status === 201) {
+      router.push(`/profile/${username}`);
     }
   };
 
@@ -49,7 +74,12 @@ export default function Home() {
       />
     ),
     "add-photo": (
-      <AddPhoto setCurrentCard={setCurrentCard} handleSubmit={handleSubmit} />
+      <AddPhoto
+        handleSubmit={handleSubmit}
+        uid={session?.user.id}
+        avatarPath={avatarPath}
+        setAvatarPath={setAvatarPath}
+      />
     ),
   };
 

@@ -5,7 +5,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-    return (
+  return (
     <html lang="en">
       <body>
         <Chakra>

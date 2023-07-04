@@ -6,36 +6,33 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
-
-  const supabase = createClientComponentClient<Database>()
-  const router = useRouter()
+  const supabase = createClientComponentClient<Database>();
+  const router = useRouter();
 
   const handleSignIn = async () => {
-    const {data , error} = await supabase.auth.signInWithOAuth({
-      provider: 'google',
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
       options: {
         redirectTo: `${location.origin}/auth/callback`,
-      }
-    })
-    console.log(data)
+      },
+    });
+    console.log(data);
   };
 
   const handleSignOut = async () => {
-    await supabase.auth.signOut()
-    router.refresh()
-  }
+    await supabase.auth.signOut();
+    router.refresh();
+  };
 
   const handleSession = async () => {
-    const { data, error } = await supabase.auth.getSession()
-    console.log(data)
-  }
+    const { data, error } = await supabase.auth.getSession();
+    console.log(data);
+  };
 
   const getProfile = async () => {
-    const { data, error } = await supabase
-    .from('profiles')
-    .select()
-    console.log(data)
-  }
+    const { data, error } = await supabase.from("profiles").select();
+    console.log(data);
+  };
 
   return (
     <Flex

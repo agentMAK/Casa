@@ -1,41 +1,46 @@
 "use client";
 
-import { Box, Text, Image, Flex } from "@chakra-ui/react";
-import { SignUpCardsType } from "../page";
+import { Box, Text, Flex } from "@chakra-ui/react";
 import { Button } from "@/app/components/Button";
-
+import Avatar from "./Avatar";
 type AddPhotoType = {
-  setCurrentCard: (card: keyof SignUpCardsType) => void;
   handleSubmit: () => void;
+  uid: string | undefined;
+  avatarPath: string;
+  setAvatarPath: (avatarPath: string) => void;
 };
 
-const AddPhoto = ({ setCurrentCard, handleSubmit }: AddPhotoType) => {
+const AddPhoto = ({
+  handleSubmit,
+  uid,
+  avatarPath,
+  setAvatarPath,
+}: AddPhotoType) => {
   return (
     <Box>
-      <Box mb={'50px'}>
-      <Text
-        fontWeight={"medium"}
-        mb={"5px"}
-        fontSize={"28px"}
-        textAlign={"center"}
-      >
-        Add a photo
-      </Text>
-      <Text fontSize={"14px"} textAlign={"center"} mb={"5px"}>
-        Showcase yourself
-      </Text>
+      <Box mb={"50px"}>
+        <Text
+          fontWeight={"medium"}
+          mb={"5px"}
+          fontSize={"28px"}
+          textAlign={"center"}
+        >
+          Add a photo
+        </Text>
+        <Text fontSize={"14px"} textAlign={"center"} mb={"5px"}>
+          Showcase yourself
+        </Text>
       </Box>
-      <Box mb={'40px'}>
-        <Flex marginX={'auto'} flexDirection={'column'} borderRadius={'200px'} backgroundColor={"#EDEDED"} boxSize={'200px'} alignItems={'center'} justifyContent={'center'}>
-          <Image
-            src={"/images/camera.svg"}
-            alt={"upload"}
-            height={"60px"}
-            mb={'10px'}
-          />
-          <Text fontSize={'14px'} fontWeight={'medium'}>Upload Photo</Text>
-        </Flex>
-      </Box>
+      <Flex alignItems={"center"} flexDirection={"column"} mb={"50px"}>
+        <Avatar
+          uid={uid as string}
+          url={avatarPath}
+          size={150}
+          onUpload={(path) => {
+            setAvatarPath(path);
+          }}
+        />
+      </Flex>
 
       <Button width={"100%"} onClick={handleSubmit}>
         Complete Profile

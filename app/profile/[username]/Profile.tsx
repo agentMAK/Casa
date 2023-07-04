@@ -13,6 +13,7 @@ type ProfileType = {
   profile: Profile | undefined;
   session: Session | null;
 };
+type Profiles = Database["public"]["Tables"]["profiles"]["Row"];
 
 export default function Profile({ profile, session }: ProfileType) {
   const supabase = createClientComponentClient<Database>();
@@ -27,53 +28,95 @@ export default function Profile({ profile, session }: ProfileType) {
     return <Box>User Not Found</Box>;
   }
 
+  const { data: avatar } = supabase.storage
+    .from("profiles")
+    .getPublicUrl(profile?.avatar_path);
+
   return (
-    <Flex
-      flexDirection={"column"}
-      maxWidth={"400px"}
-      margin={"auto"}
-      height={"100vh"}
-    >
-      <Flex flexDirection={'column'} marginX={"50px"} mt={"50px"} gap={'10px'}>
-        <Box paddingTop={'36px'} paddingBottom={'16px'} mb={'10px'}>
-          <Image
-            src={"/images/profile.jpg"}
-            boxSize={"115px"}
-            alt={"profile-picture"}
-            marginX={"auto"}
-            borderRadius={'115px'}
-            mb={'8px'}
-          />
-          <Box textAlign={'center'}>
-            <Text fontSize={'32px'} fontWeight={'semibold'}>{profile.first_name} {profile.last_name[0]} </Text>
-            <Text fontSize={'14px'}>@{profile.username}</Text>
+    // <Box backgroundColor={'#43324E'} color={'#E17E65'}>
+    <Box>
+      <Flex
+        paddingY={"20px"}
+        width={"100%"}
+        justifyContent={"space-between"}
+        paddingX={"50px"}
+        alignItems={"center"}
+      >
+        <Text>Campfire</Text>
+        {session ? (
+          <Button
+            width={"fit-content"}
+            padding={"8px 16px"}
+            fontSize={"14px"}
+            onClick={handleSignOut}
+          >
+            Sign Out
+          </Button>
+        ) : (
+          <Button
+            width={"fit-content"}
+            padding={"8px 16px"}
+            fontSize={"14px"}
+            onClick={() => router.push("/login")}
+          >
+            Login
+          </Button>
+        )}
+      </Flex>
+      <Flex
+        flexDirection={"column"}
+        maxWidth={"500px"}
+        margin={"auto"}
+        minHeight={"100vh"}
+      >
+        <Flex flexDirection={"column"} mt={"50px"} gap={"10px"}>
+          <Box paddingTop={"36px"} paddingBottom={"16px"} mb={"10px"}>
+            <Image
+              src={avatar.publicUrl}
+              boxSize={"115px"}
+              alt={"profile-picture"}
+              marginX={"auto"}
+              borderRadius={"115px"}
+              mb={"10px"}
+            />
+            <Box textAlign={"center"}>
+              <Text fontSize={"18px"} fontWeight={"semibold"}>
+                {profile.first_name} {profile.last_name}{" "}
+              </Text>
+              <Text fontSize={"14px"}>@{profile.username}</Text>
+            </Box>
           </Box>
-        </Box>
-        <Box textAlign={'center'} fontSize={'24px'} fontWeight={'medium'}>
-          <Text>Welcome to your new</Text>
-          <Text>digital home</Text>
-        </Box>
-        {/* <Box mb={"50px"}>
+          {/* <Box textAlign={"center"} fontSize={"24px"} fontWeight={"medium"}>
+            <Text>Welcome to your new</Text>
+            <Text >digital home</Text>
+          </Box> */}
+          {/* <Image src={'/images/purple.png'} alt={'nft'} />
+          <Image src={'/images/turk.png'} alt={'nft'} /> */}
+          {/* <Box mb={"50px"}>
           <Text>Username: {profile.username} </Text>
           <Text>First Name: {profile.first_name} </Text>
           <Text>Last Name: {profile.last_name} </Text>
           <Text>id: {profile.user_id} </Text>
         </Box> */}
-        <Box mt={'300px'}>
-          <Text>
-            {session ? `Logged in as:${session.user.email}` : "Signed out"}
-          </Text>
-          {session ? (
-            <Button width={"100%"} onClick={handleSignOut}>
-              Sign Out
-            </Button>
-          ) : (
-            <Button width={"100%"} onClick={() => router.push("/login")}>
-              Login
-            </Button>
-          )}
-        </Box>
+        </Flex>
       </Flex>
-    </Flex>
+      <Button
+        position={"fixed"}
+        bottom={"40px"}
+        left={"50%"}
+        ml={"-52.5px"}
+        width={"fit-content"}
+        padding={"10px 20px"}
+      >
+        Add NFT
+      </Button>
+    </Box>
   );
+}
+function useState<T>(url: any): [any, any] {
+  throw new Error("Function not implemented.");
+}
+
+function useEffect(arg0: () => void, arg1: any[]) {
+  throw new Error("Function not implemented.");
 }

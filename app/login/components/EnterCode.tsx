@@ -7,7 +7,7 @@ import {
   Input,
   FormControl,
   FormLabel,
-} from "@chakra-ui/react"
+} from "@chakra-ui/react";
 import { LoginCardsType } from "../page";
 
 type EnterCodeType = {
@@ -32,9 +32,7 @@ const EnterCode = ({ setCurrentCard }: EnterCodeType) => {
       </Text>
       <FormControl mb="10px">
         <FormLabel>Login Code</FormLabel>
-        <Input
-          placeholder="Paste login code"
-        />
+        <Input placeholder="Paste login code" />
       </FormControl>
       <Button width={"100%"} onClick={() => {}}>
         Continue

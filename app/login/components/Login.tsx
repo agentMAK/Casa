@@ -2,7 +2,6 @@
 
 import {
   Box,
-  Button,
   Text,
   Image,
   Input,
@@ -11,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/types/supabase";
+import { Button } from "@/app/components/Button";
 
 type LoginType = {
   setEmail: (value: string) => void;
@@ -29,11 +29,11 @@ const Login = ({ setEmail }: LoginType) => {
   };
   return (
     <Box>
-      <Box mb={"32px"}>
+      <Box mb={"20px"}>
         <Text
           fontWeight={"medium"}
           mb={"5px"}
-          fontSize={"28px"}
+          fontSize={"20px"}
           textAlign={"center"}
         >
           Join us 🥳

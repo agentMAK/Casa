@@ -1,13 +1,9 @@
 "use client";
 
-import {
-  Box,
-  Text,
-  FormControl,
-} from "@chakra-ui/react";
+import { Box, Text, FormControl } from "@chakra-ui/react";
 import { SignUpCardsType } from "../page";
-import { Input } from '../../components/Input'
-import { FormLabel } from '../../components/FormLabel'
+import { Input } from "../../components/Input";
+import { FormLabel } from "../../components/FormLabel";
 import { Button } from "@/app/components/Button";
 
 type CreateProfileType = {
@@ -48,17 +44,21 @@ const CreateProfile = ({
       <FormControl>
         <FormLabel>First Name</FormLabel>
         <Input
-          onChange={(e:any) => setFirstName(e.target.value)}
+          onChange={(e: any) => setFirstName(e.target.value)}
           value={firstName}
-          mb={'16px'}
+          mb={"16px"}
         />
         <FormLabel>Last Name</FormLabel>
-        <Input onChange={(e:any) => setLastName(e.target.value)} value={lastName} mb={'32px'}  />
+        <Input
+          onChange={(e: any) => setLastName(e.target.value)}
+          value={lastName}
+          mb={"32px"}
+        />
         <FormLabel>Claim username</FormLabel>
         <Input
-          onChange={(e:any) => setUsername(e.target.value)}
+          onChange={(e: any) => setUsername(e.target.value)}
           value={username}
-          mb={'16px'}
+          mb={"32px"}
         />
         <Button width={"100%"} onClick={() => setCurrentCard("add-photo")}>
           Continue
