@@ -14,11 +14,17 @@ export default async function Page({
     error: sessionError,
   } = await supabase.auth.getSession();
 
-  const { data, error } = await supabase
+  const { data:profileData, error:profileError } = await supabase
     .from("profiles")
     .select()
     .eq("username", params?.username);
 
-  const profile = data && data[0];
-  return <Profile profile={profile as Profile | undefined} session={session} />;
+  const profile = profileData && profileData[0];
+
+  const { data:nftData, error:nftError } = await supabase
+  .from('nfts')
+  .select()
+  .eq("user_id", profileData && profileData[0].user_id)
+
+  return <Profile profile={profile as Profile | undefined} session={session} nfts={nftData as any[]} />;
 }

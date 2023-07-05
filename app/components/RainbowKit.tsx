@@ -11,7 +11,7 @@ type Props = {
 };
 
 const { chains, publicClient } = configureChains(
-  [mainnet, polygon, optimism, arbitrum],
+  [mainnet],
   [
     alchemyProvider({
       apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY as string,
@@ -21,7 +21,7 @@ const { chains, publicClient } = configureChains(
 );
 const { connectors } = getDefaultWallets({
   appName: "Jacuzzi MVP",
-  projectId: "0.1",
+  projectId: 'e6ede25984308abeb540e7d73090a05f',
   chains,
 });
 const wagmiConfig = createConfig({

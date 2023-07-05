@@ -2,20 +2,23 @@
 
 import { Button } from "@/app/components/Button";
 import { Database } from "@/types/supabase";
-import { Box, Flex, Text, Image } from "@chakra-ui/react";
+import { Box, Flex, Text, Image, useDisclosure, } from "@chakra-ui/react";
 import {
   Session,
   createClientComponentClient,
 } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
+import { AddNftModal } from "./components/AddNftModal";
 
 type ProfileType = {
   profile: Profile | undefined;
   session: Session | null;
+  nfts:any[]
 };
 type Profiles = Database["public"]["Tables"]["profiles"]["Row"];
 
-export default function Profile({ profile, session }: ProfileType) {
+export default function Profile({ profile, session, nfts }: ProfileType) {
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const supabase = createClientComponentClient<Database>();
   const router = useRouter();
 
@@ -31,6 +34,7 @@ export default function Profile({ profile, session }: ProfileType) {
   const { data: avatar } = supabase.storage
     .from("profiles")
     .getPublicUrl(profile?.avatar_path);
+
 
   return (
     // <Box backgroundColor={'#43324E'} color={'#E17E65'}>
@@ -68,8 +72,9 @@ export default function Profile({ profile, session }: ProfileType) {
         maxWidth={"500px"}
         margin={"auto"}
         minHeight={"100vh"}
+        paddingBottom={'50px'}
       >
-        <Flex flexDirection={"column"} mt={"50px"} gap={"10px"}>
+        <Flex flexDirection={"column"} gap={"10px"}>
           <Box paddingTop={"36px"} paddingBottom={"16px"} mb={"10px"}>
             <Image
               src={avatar.publicUrl}
@@ -86,18 +91,12 @@ export default function Profile({ profile, session }: ProfileType) {
               <Text fontSize={"14px"}>@{profile.username}</Text>
             </Box>
           </Box>
-          {/* <Box textAlign={"center"} fontSize={"24px"} fontWeight={"medium"}>
-            <Text>Welcome to your new</Text>
-            <Text >digital home</Text>
-          </Box> */}
-          {/* <Image src={'/images/purple.png'} alt={'nft'} />
-          <Image src={'/images/turk.png'} alt={'nft'} /> */}
-          {/* <Box mb={"50px"}>
-          <Text>Username: {profile.username} </Text>
-          <Text>First Name: {profile.first_name} </Text>
-          <Text>Last Name: {profile.last_name} </Text>
-          <Text>id: {profile.user_id} </Text>
-        </Box> */}
+          {
+            nfts.map((nft,index) => {
+               return <Image key={index} src={nft.media.gateway} alt={'nft'} borderRadius={'16px'} />
+            })
+
+          }
         </Flex>
       </Flex>
       <Button
@@ -107,16 +106,11 @@ export default function Profile({ profile, session }: ProfileType) {
         ml={"-52.5px"}
         width={"fit-content"}
         padding={"10px 20px"}
+        onClick={onOpen}
       >
         Add NFT
       </Button>
+      <AddNftModal onClose={onClose} isOpen={isOpen} />
     </Box>
   );
-}
-function useState<T>(url: any): [any, any] {
-  throw new Error("Function not implemented.");
-}
-
-function useEffect(arg0: () => void, arg1: any[]) {
-  throw new Error("Function not implemented.");
 }

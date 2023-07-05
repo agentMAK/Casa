@@ -9,9 +9,9 @@ export default async function RootLayout({
     <html lang="en">
       <body>
         <Chakra>
-          {/* <RainbowKit> */}
+          <RainbowKit>
           {children}
-          {/* </RainbowKit> */}
+          </RainbowKit>
         </Chakra>
       </body>
     </html>
