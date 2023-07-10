@@ -38,9 +38,9 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
 
   return (
     // <Box backgroundColor={'#43324E'} color={'#E17E65'}>
-    <Box>
+     <Box>
       <Flex
-        paddingY={"20px"}
+        height={'50px'}
         width={"100%"}
         justifyContent={"space-between"}
         paddingX={"50px"}
@@ -75,7 +75,7 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
         paddingBottom={'50px'}
       >
         <Flex flexDirection={"column"} gap={"10px"}>
-          <Box paddingTop={"36px"} paddingBottom={"16px"} mb={"10px"}>
+          <Box paddingTop={"10px"} paddingBottom={"16px"} mb={"10px"}>
             <Image
               src={avatar.publicUrl}
               boxSize={"115px"}

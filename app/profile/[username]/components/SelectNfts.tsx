@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Text, Image, SimpleGrid } from "@chakra-ui/react";
+import { Box, Text, SimpleGrid } from "@chakra-ui/react";
 import { NftCardsType } from "./AddNftModal";
 import useFetchNftsOwner from "@/app/hooks/useFetchNftsOwner";
 import { useState } from "react";
