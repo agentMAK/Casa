@@ -28,7 +28,7 @@ const useFetchNftsOwner = (address:string) => {
     };
 
     fetchNftsOwner();
-  }, []);
+  }, [address]);
 
   return { data, loading, error };
 };

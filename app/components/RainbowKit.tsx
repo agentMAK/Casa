@@ -21,7 +21,7 @@ const { chains, publicClient } = configureChains(
 );
 const { connectors } = getDefaultWallets({
   appName: "Jacuzzi MVP",
-  projectId: 'e6ede25984308abeb540e7d73090a05f',
+  projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_CLOUD as string,
   chains,
 });
 const wagmiConfig = createConfig({
