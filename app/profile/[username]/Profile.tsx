@@ -36,9 +36,9 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
     .getPublicUrl(profile?.avatar_path as string);
 
   return (
-    <Box backgroundColor={'black'} color={'white'}>
-    {/* <Box backgroundColor={'#43324E'} color={'#E17E65'}> */}
-     {/* <Box> */}
+    // <Box backgroundColor={'black'} color={'white'}>
+    // <Box backgroundColor={'#43324E'} color={'#E17E65'}>
+     <Box>
       <Flex
         height={'50px'}
         width={"100%"}
@@ -46,7 +46,7 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
         paddingX={"50px"}
         alignItems={"center"}
       >
-        <Text>Campfire</Text>
+        {/* <Text>Campfire</Text>
         {session ? (
           <Button
             width={"fit-content"}
@@ -65,7 +65,7 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
           >
             Login
           </Button>
-        )}
+        )} */}
       </Flex>
       <Flex
         flexDirection={"column"}
