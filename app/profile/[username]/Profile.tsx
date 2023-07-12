@@ -39,14 +39,14 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
     // <Box backgroundColor={'black'} color={'white'}>
     // <Box backgroundColor={'#43324E'} color={'#E17E65'}>
      <Box>
-      <Flex
+      {/* <Flex
         height={'50px'}
         width={"100%"}
         justifyContent={"space-between"}
         paddingX={"50px"}
         alignItems={"center"}
       >
-        {/* <Text>Campfire</Text>
+        <Text>Campfire</Text>
         {session ? (
           <Button
             width={"fit-content"}
@@ -65,8 +65,8 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
           >
             Login
           </Button>
-        )} */}
-      </Flex>
+        )}
+      </Flex> */}
       <Flex
         flexDirection={"column"}
         maxWidth={"524px"}
@@ -74,19 +74,19 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
         minHeight={"100vh"}
         paddingBottom={'50px'}
         paddingX={'24px'}
+        paddingTop={'32px'}
       >
-        <Flex flexDirection={"column"} gap={"24px"}>
-          <Box paddingTop={"10px"} paddingBottom={"16px"} mb={"10px"}>
+        <Flex>
+          <Box paddingBottom={"16px"} mb={"10px"}>
             <Image
               src={avatar.publicUrl}
-              boxSize={"115px"}
+              boxSize={"88px"}
               alt={"profile-picture"}
-              marginX={"auto"}
-              borderRadius={"115px"}
+              borderRadius={"88px"}
               mb={"10px"}
             />
-            <Box textAlign={"center"}>
-              <Text fontSize={"18px"} fontWeight={"semibold"}>
+            <Box>
+              <Text fontSize={"18px"} fontWeight={"semibold"} mb={'8px'}>
                 {profile.first_name} {profile.last_name}{" "}
               </Text>
               <Text fontSize={"14px"}>@{profile.username}</Text>
