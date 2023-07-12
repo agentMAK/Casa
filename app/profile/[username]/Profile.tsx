@@ -2,7 +2,14 @@
 
 import { Button } from "@/app/components/Button";
 import { Database } from "@/types/supabase";
-import { Box, Flex, Text, Image, useDisclosure, } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Text,
+  Image,
+  useDisclosure,
+  SimpleGrid,
+} from "@chakra-ui/react";
 import {
   Session,
   createClientComponentClient,
@@ -14,11 +21,11 @@ type Profiles = Database["public"]["Tables"]["profiles"]["Row"];
 type ProfileType = {
   profile: Profiles | undefined;
   session: Session | null;
-  nfts:any[]
+  nfts: any[];
 };
 
 export default function Profile({ profile, session, nfts }: ProfileType) {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const supabase = createClientComponentClient<Database>();
   const router = useRouter();
 
@@ -38,7 +45,7 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
   return (
     // <Box backgroundColor={'black'} color={'white'}>
     // <Box backgroundColor={'#43324E'} color={'#E17E65'}>
-     <Box>
+    <Box>
       {/* <Flex
         height={'50px'}
         width={"100%"}
@@ -72,48 +79,88 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
         maxWidth={"524px"}
         margin={"auto"}
         minHeight={"100vh"}
-        paddingBottom={'50px'}
-        paddingX={'24px'}
-        paddingTop={'32px'}
+        paddingBottom={"50px"}
+        paddingX={"24px"}
+        paddingTop={"32px"}
       >
-        <Flex flexDirection={"column"} gap={"24px"}>
+        <Box mb={"24px"}>
+          <Image
+            src={avatar.publicUrl}
+            boxSize={"88px"}
+            alt={"profile-picture"}
+            borderRadius={"88px"}
+            mb={"12px"}
+          />
           <Box>
-            <Image
-              src={avatar.publicUrl}
-              boxSize={"88px"}
-              alt={"profile-picture"}
-              borderRadius={"88px"}
-              mb={"12px"}
-            />
-            <Box>
-              <Text fontSize={"18px"} fontWeight={"semibold"}>
-                {profile.first_name} {profile.last_name}{" "}
-              </Text>
-              <Text fontSize={"14px"} mb={'12px'}>@{profile.username}</Text>
-              <Text fontSize={"14px"}>writer, designer, and occasional model</Text>
-            </Box>
+            <Text fontSize={"18px"} fontWeight={"semibold"}>
+              {profile.first_name} {profile.last_name}{" "}
+            </Text>
+            <Text fontSize={"14px"} mb={"12px"}>
+              @{profile.username}
+            </Text>
+            <Text fontSize={"14px"}>
+              writer, designer, and occasional model
+            </Text>
           </Box>
-          {
-            nfts.map((nft,index) => {
-               return <Image key={index} src={nft.media.gateway} alt={'nft'} borderRadius={'24px'} />
-            })
+        </Box>
 
-          }
+        <Flex flexDirection={"column"} gap={"24px"}>
+        {nfts.map((nft, index) => {
+              if (index === 5) {
+                return (
+                  <Image
+                    key={index}
+                    src={nft.media.gateway}
+                    alt={"nft"}
+                    borderRadius={"24px"}
+                  />
+                );
+              }
+            })}
+          <SimpleGrid columns={2} spacing={"24px"}>
+            {nfts.map((nft, index) => {
+              if (index < 4) {
+                return (
+                  <Image
+                    key={index}
+                    src={nft.media.gateway}
+                    alt={"nft"}
+                    borderRadius={"24px"}
+                  />
+                );
+              }
+            })}
+          </SimpleGrid>
+          {nfts.map((nft, index) => {
+            return (
+              <Image
+                key={index}
+                src={nft.media.gateway}
+                alt={"nft"}
+                borderRadius={"24px"}
+              />
+            );
+          })}
         </Flex>
       </Flex>
-      {session &&
-      <Button
-        position={"fixed"}
-        bottom={"40px"}
-        left={"50%"}
-        ml={"-52.5px"}
-        width={"fit-content"}
-        padding={"10px 20px"}
-        onClick={onOpen}
-      >
-        Add NFT
-      </Button>}
-      <AddNftModal onClose={onClose} isOpen={isOpen} address={profile.linked_wallet_address as string}/>
+      {session && (
+        <Button
+          position={"fixed"}
+          bottom={"40px"}
+          left={"50%"}
+          ml={"-52.5px"}
+          width={"fit-content"}
+          padding={"10px 20px"}
+          onClick={onOpen}
+        >
+          Add NFT
+        </Button>
+      )}
+      <AddNftModal
+        onClose={onClose}
+        isOpen={isOpen}
+        address={profile.linked_wallet_address as string}
+      />
     </Box>
   );
 }
