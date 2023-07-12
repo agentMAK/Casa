@@ -9,13 +9,13 @@ import {
 } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 import { AddNftModal } from "./components/AddNftModal";
+type Profiles = Database["public"]["Tables"]["profiles"]["Row"];
 
 type ProfileType = {
-  profile: Profile | undefined;
+  profile: Profiles | undefined;
   session: Session | null;
   nfts:any[]
 };
-type Profiles = Database["public"]["Tables"]["profiles"]["Row"];
 
 export default function Profile({ profile, session, nfts }: ProfileType) {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -33,8 +33,7 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
 
   const { data: avatar } = supabase.storage
     .from("profiles")
-    .getPublicUrl(profile?.avatar_path);
-
+    .getPublicUrl(profile?.avatar_path as string);
 
   return (
     // <Box backgroundColor={'#43324E'} color={'#E17E65'}>
@@ -110,7 +109,7 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
       >
         Add NFT
       </Button>
-      <AddNftModal onClose={onClose} isOpen={isOpen} />
+      <AddNftModal onClose={onClose} isOpen={isOpen} address={profile.linked_wallet_address as string}/>
     </Box>
   );
 }

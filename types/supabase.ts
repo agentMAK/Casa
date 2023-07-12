@@ -73,6 +73,7 @@ export interface Database {
           avatar_path: string | null
           first_name: string | null
           last_name: string | null
+          linked_wallet_address: string | null
           user_id: string
           username: string
         }
@@ -80,6 +81,7 @@ export interface Database {
           avatar_path?: string | null
           first_name?: string | null
           last_name?: string | null
+          linked_wallet_address?: string | null
           user_id: string
           username: string
         }
@@ -87,6 +89,7 @@ export interface Database {
           avatar_path?: string | null
           first_name?: string | null
           last_name?: string | null
+          linked_wallet_address?: string | null
           user_id?: string
           username?: string
         }

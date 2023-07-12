@@ -12,16 +12,15 @@ import { Database } from "@/types/supabase";
 import { useRouter } from "next/navigation";
 
 type SelectNftsType = {
-  setCurrentCard: (card: keyof NftCardsType) => void;
+  address:string;
   onClose: () => void;
 };
 export type Selected = "default" | "selected" | "not-selected";
 
-const SelectNfts = ({ setCurrentCard, onClose }: SelectNftsType) => {
+const SelectNfts = ({ onClose, address }: SelectNftsType) => {
 
   const supabase = createClientComponentClient<Database>();
   const router = useRouter();
-  const { address } = useAccount()
   const { data, loading, error } = useFetchNftsOwner(address as '0x${string}');
   const [selectedNftKey, setSelectedNftKey] = useState<number | null>(null);
 

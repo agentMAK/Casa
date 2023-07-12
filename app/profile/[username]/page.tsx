@@ -2,6 +2,7 @@ import { Database } from "@/types/supabase";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import Profile from "./Profile";
+type Profiles = Database["public"]["Tables"]["profiles"]["Row"];
 
 export default async function Page({
   params,
@@ -26,5 +27,5 @@ export default async function Page({
   .select()
   .eq("user_id", profileData && profileData[0].user_id)
 
-  return <Profile profile={profile as Profile | undefined} session={session} nfts={nftData as any[]} />;
+  return <Profile profile={profile as Profiles | undefined} session={session} nfts={nftData as any[]} />;
 }

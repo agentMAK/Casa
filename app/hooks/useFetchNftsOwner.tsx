@@ -2,7 +2,7 @@ import { Network, Alchemy, OwnedNftsResponse, NftOrdering } from "alchemy-sdk";
 
 const alchemy = new Alchemy({
     apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
-    network: Network.ETH_MAINNET,
+    network: Network.OPT_MAINNET,
   });
 
 import { useState, useEffect } from 'react';

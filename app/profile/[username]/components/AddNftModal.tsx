@@ -21,16 +21,18 @@ export type NftCardsType = {
 export function AddNftModal({
   onClose,
   isOpen,
+  address
 }: {
   onClose: () => void;
   isOpen: boolean;
+  address:string
 }) {
   const [currentCard, setCurrentCard] =
-    useState<keyof NftCardsType>("connect-wallet");
+    useState<keyof NftCardsType>("select-nfts");
 
   const nftCards: NftCardsType = {
     "connect-wallet": <ConnectWallet setCurrentCard={setCurrentCard} />,
-    "select-nfts":<SelectNfts setCurrentCard={setCurrentCard} onClose={onClose} />
+    "select-nfts":<SelectNfts address={address} onClose={onClose} />
   };
 
   const account = useAccount({
