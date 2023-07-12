@@ -76,7 +76,8 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
       </Flex> */}
       <Flex
         flexDirection={"column"}
-        maxWidth={"524px"}
+        // maxWidth={"524px"}
+        maxWidth={"1200px"}
         margin={"auto"}
         minHeight={"100vh"}
         paddingBottom={"75px"}
@@ -104,7 +105,7 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
           </Box>
         </Box>
 
-        <Flex flexDirection={"column"} gap={"24px"}>
+        {/* <Flex flexDirection={"column"} gap={"24px"}>
         {nfts.map((nft, index) => {
               if (index === 5) {
                 return (
@@ -141,9 +142,27 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
               />
             );
           })}
-        </Flex>
+        </Flex> */}
+        <SimpleGrid columns={2} spacingX={["16px","16px","24px","24px"]} spacingY={"24px"}>
+          {nfts.map((nft, index) => {
+            if (index > 1) {
+              return (
+                <Image
+                  key={index}
+                  src={nft.media.gateway}
+                  alt={"nft"}
+                  borderRadius={"24px"}
+                />
+              );
+            }
+          })}
+        </SimpleGrid>
       </Flex>
-      <Flex paddingY='75px' backgroundColor={'#F5F5F5'} justifyContent={'center'}>
+      <Flex
+        paddingY="75px"
+        backgroundColor={"#F5F5F5"}
+        justifyContent={"center"}
+      >
         <Text>Casa</Text>
       </Flex>
       {session && (
