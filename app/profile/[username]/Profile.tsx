@@ -68,10 +68,11 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
       </Flex>
       <Flex
         flexDirection={"column"}
-        maxWidth={"500px"}
+        maxWidth={"508px"}
         margin={"auto"}
         minHeight={"100vh"}
         paddingBottom={'50px'}
+        paddingX={'16px'}
       >
         <Flex flexDirection={"column"} gap={"10px"}>
           <Box paddingTop={"10px"} paddingBottom={"16px"} mb={"10px"}>
