@@ -68,11 +68,11 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
       </Flex>
       <Flex
         flexDirection={"column"}
-        maxWidth={"508px"}
+        maxWidth={"524px"}
         margin={"auto"}
         minHeight={"100vh"}
         paddingBottom={'50px'}
-        paddingX={'16px'}
+        paddingX={'24px'}
       >
         <Flex flexDirection={"column"} gap={"10px"}>
           <Box paddingTop={"10px"} paddingBottom={"16px"} mb={"10px"}>
@@ -93,7 +93,7 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
           </Box>
           {
             nfts.map((nft,index) => {
-               return <Image key={index} src={nft.media.gateway} alt={'nft'} borderRadius={'16px'} />
+               return <Image key={index} src={nft.media.gateway} alt={'nft'} borderRadius={'24px'} />
             })
 
           }
