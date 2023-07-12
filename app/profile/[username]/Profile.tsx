@@ -117,7 +117,7 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
                 );
               }
             })}
-          <SimpleGrid columns={2} spacing={"24px"}>
+          <SimpleGrid columns={2} spacing={"16px"}>
             {nfts.map((nft, index) => {
               if (index < 4) {
                 return (
