@@ -81,7 +81,7 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
         margin={"auto"}
         minHeight={"100vh"}
         paddingBottom={"75px"}
-        paddingX={["16px","16px","0px","0px"]}
+        paddingX={["12px","12px","0px","0px"]}
         paddingTop={"32px"}
       >
         <Box mb={"24px"}>
@@ -143,7 +143,7 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
             );
           })}
         </Flex> */}
-        <SimpleGrid columns={2} spacingX={["16px","16px","24px","24px"]} spacingY={["16px","16px","24px","24px"]}>
+        <SimpleGrid columns={2} spacingX={["12px","12px","24px","24px"]} spacingY={["12px","12px","24px","24px"]}>
           {nfts.map((nft, index) => {
             if (index > 1) {
               return (
