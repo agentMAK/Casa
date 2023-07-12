@@ -36,8 +36,9 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
     .getPublicUrl(profile?.avatar_path as string);
 
   return (
-    // <Box backgroundColor={'#43324E'} color={'#E17E65'}>
-     <Box>
+    <Box backgroundColor={'black'} color={'white'}>
+    {/* <Box backgroundColor={'#43324E'} color={'#E17E65'}> */}
+     {/* <Box> */}
       <Flex
         height={'50px'}
         width={"100%"}
@@ -74,7 +75,7 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
         paddingBottom={'50px'}
         paddingX={'24px'}
       >
-        <Flex flexDirection={"column"} gap={"10px"}>
+        <Flex flexDirection={"column"} gap={"24px"}>
           <Box paddingTop={"10px"} paddingBottom={"16px"} mb={"10px"}>
             <Image
               src={avatar.publicUrl}
