@@ -98,6 +98,7 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
           }
         </Flex>
       </Flex>
+      {session &&
       <Button
         position={"fixed"}
         bottom={"40px"}
@@ -108,7 +109,7 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
         onClick={onOpen}
       >
         Add NFT
-      </Button>
+      </Button>}
       <AddNftModal onClose={onClose} isOpen={isOpen} address={profile.linked_wallet_address as string}/>
     </Box>
   );
