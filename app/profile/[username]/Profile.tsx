@@ -76,20 +76,21 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
         paddingX={'24px'}
         paddingTop={'32px'}
       >
-        <Flex>
-          <Box paddingBottom={"16px"} mb={"10px"}>
+        <Flex flexDirection={"column"} gap={"24px"}>
+          <Box>
             <Image
               src={avatar.publicUrl}
               boxSize={"88px"}
               alt={"profile-picture"}
               borderRadius={"88px"}
-              mb={"10px"}
+              mb={"12px"}
             />
             <Box>
-              <Text fontSize={"18px"} fontWeight={"semibold"} mb={'8px'}>
+              <Text fontSize={"18px"} fontWeight={"semibold"}>
                 {profile.first_name} {profile.last_name}{" "}
               </Text>
-              <Text fontSize={"14px"}>@{profile.username}</Text>
+              <Text fontSize={"14px"} mb={'12px'}>@{profile.username}</Text>
+              <Text fontSize={"14px"}>writer, designer, and occasional model</Text>
             </Box>
           </Box>
           {
