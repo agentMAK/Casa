@@ -79,7 +79,7 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
         maxWidth={"524px"}
         margin={"auto"}
         minHeight={"100vh"}
-        paddingBottom={"50px"}
+        paddingBottom={"75px"}
         paddingX={"24px"}
         paddingTop={"32px"}
       >
@@ -117,7 +117,7 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
                 );
               }
             })}
-          <SimpleGrid columns={2} spacing={"16px"}>
+          <SimpleGrid columns={2} spacingX={"16px"} spacingY={"24px"}>
             {nfts.map((nft, index) => {
               if (index < 4) {
                 return (
@@ -142,6 +142,9 @@ export default function Profile({ profile, session, nfts }: ProfileType) {
             );
           })}
         </Flex>
+      </Flex>
+      <Flex paddingY='75px' backgroundColor={'#F5F5F5'} justifyContent={'center'}>
+        <Text>Casa</Text>
       </Flex>
       {session && (
         <Button
