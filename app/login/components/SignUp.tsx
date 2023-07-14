@@ -1,15 +1,19 @@
 "use client";
 
-import { Box, Text, Image } from "@chakra-ui/react";
+import { Box, Text, Image, FormControl, Flex, } from "@chakra-ui/react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/types/supabase";
 import { Button } from "@/app/components/Button";
+import { FormLabel } from "@/app/components/FormLabel";
+import { Input } from "@/app/components/Input";
+import { LoginCardsType } from "../page";
 
 type SignUpType = {
   setEmail: (value: string) => void;
+  setCurrentCard: (card: keyof LoginCardsType) => void;
 };
 
-const SignUp = ({ setEmail }: SignUpType) => {
+const SignUp = ({ setEmail, setCurrentCard }: SignUpType) => {
   const supabase = createClientComponentClient<Database>();
 
   const handleSignInGoogle = async () => {
@@ -21,37 +25,32 @@ const SignUp = ({ setEmail }: SignUpType) => {
     });
   };
   return (
-    <Box>
-      <Box mb={"20px"}>
+    <Flex flexDirection={'column'} alignItems={'center'}>
+      <Box mb={"50px"}>
         <Text
           fontWeight={"medium"}
           mb={"5px"}
-          fontSize={"20px"}
+          fontSize={"24px"}
           textAlign={"center"}
         >
-          Join us 🥳
+          Let&apos;s get you signed up 🥳
         </Text>
-        {/* <Text fontSize={"14px"} textAlign={"center"} mb={"5px"}>
+        <Text fontSize={"14px"} textAlign={"center"}>
         No spam, our promise 🤝
-      </Text> */}
+      </Text>
       </Box>
-      {/* <FormControl mb="10px">
-        <FormLabel>Email</FormLabel>
-        <Input type="email" placeholder="Enter email address" onChange={(e) => setEmail(e.target.value)} />
-      </FormControl> */}
-      <Button variant={"clear"} width={"100%"} onClick={handleSignInGoogle}>
-        <Image
-          src={"/images/google.svg"}
-          alt={"Google"}
-          height={"20px"}
-          mr={"10px"}
+      <FormControl>
+        <FormLabel>Phone Number</FormLabel>
+        <Input
+          // onChange={(e: any) => setFirstName(e.target.value)}
+          // value={firstName}
+          mb={"25px"}
         />
-        Continue with Google
-      </Button>
-      {/* <Button width={"100%"} onClick={() => setCurrentCard("enter-code")}>
-        Continue
-      </Button> */}
-    </Box>
+      </FormControl>
+      <Button onClick={() => setCurrentCard("enter-code")}>
+          Continue
+        </Button>
+    </Flex>
   );
 };
 

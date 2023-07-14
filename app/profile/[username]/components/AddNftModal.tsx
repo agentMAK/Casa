@@ -1,4 +1,3 @@
-import { Button } from "@/app/components/Button";
 import {
   Modal,
   ModalBody,
@@ -9,37 +8,39 @@ import {
 } from "@chakra-ui/react";
 import ConnectWallet from "./ConnectWallet";
 import { useState } from "react";
-import useFetchNftsOwner from "@/app/hooks/useFetchNftsOwner";
 import SelectNfts from "./SelectNfts";
-import { useAccount } from "wagmi";
+import SignToVerify from "./SignToVerify";
 
 export type NftCardsType = {
   "connect-wallet": JSX.Element;
-   "select-nfts": JSX.Element;
+  "select-nfts": JSX.Element;
+  "sign-to-verify": JSX.Element;
 };
 
 export function AddNftModal({
   onClose,
   isOpen,
-  address
+  address,
 }: {
   onClose: () => void;
   isOpen: boolean;
-  address:string
+  address: string;
 }) {
+
   const [currentCard, setCurrentCard] =
-    useState<keyof NftCardsType>("select-nfts");
+     useState<keyof NftCardsType>(address ? "select-nfts" : "connect-wallet");
 
   const nftCards: NftCardsType = {
     "connect-wallet": <ConnectWallet setCurrentCard={setCurrentCard} />,
-    "select-nfts":<SelectNfts address={address} onClose={onClose} />
+    "select-nfts": (
+      <SelectNfts
+        setCurrentCard={setCurrentCard}
+        address={"0x5b93ff82faaf241c15997ea3975419dddd8362c5"}
+        onClose={onClose}
+      />
+    ),
+    "sign-to-verify": <SignToVerify setCurrentCard={setCurrentCard} />,
   };
-
-  const account = useAccount({
-    onConnect({ address, connector, isReconnected }) {
-        setCurrentCard('select-nfts')
-    },
-  })
 
   return (
     <Modal onClose={onClose} size={"full"} isOpen={isOpen}>
@@ -48,11 +49,15 @@ export function AddNftModal({
         <Box>
           <ModalCloseButton />
           <ModalBody
-            width={"500px"}
             marginX={"auto"}
             minHeight={"100vh"}
-            height={'fit-content'}
-            padding={'0px'}
+            height={"fit-content"}
+            padding={"0px"}
+            display={"flex"}
+            justifyContent={"center"}
+            flexDirection={"column"}
+            maxWidth={"400px"}
+            margin={"auto"}
           >
             {nftCards[currentCard]}
           </ModalBody>

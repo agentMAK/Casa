@@ -1,9 +1,10 @@
 "use client";
 
-import { Box, Text, Input, InputGroup, InputLeftAddon } from "@chakra-ui/react";
+import { Box, Text, Input, InputGroup, InputLeftAddon, Heading, Flex } from "@chakra-ui/react";
 import { LoginCardsType } from "../page";
 
 import { Button } from "../../components/Button";
+import { Bold } from "@/app/components/Bold";
 
 type LoginOrSignUpType = {
   setCurrentCard: (card: keyof LoginCardsType) => void;
@@ -11,14 +12,14 @@ type LoginOrSignUpType = {
 
 const LoginOrSignUp = ({ setCurrentCard }: LoginOrSignUpType) => {
   return (
-    <Box>
+    <Flex flexDirection={'column'} alignItems={'center'} >
       <Text
         fontWeight={"medium"}
         mb={"50px"}
         fontSize={"24px"}
         textAlign={"center"}
       >
-        Your digital home on the internet
+        Your <Bold fontWeight={'900'} color={"#44E9AD"}>digital home</Bold> for <br /> on-chain music
       </Text>
       <Button
         variant={"dark"}
@@ -27,10 +28,10 @@ const LoginOrSignUp = ({ setCurrentCard }: LoginOrSignUpType) => {
       >
         Get Started
       </Button>
-      <Button variant={"clear"} onClick={() => setCurrentCard("login")}>
+      <Text variant={"clear"} onClick={() => setCurrentCard("login")} fontWeight={'medium'}>
         Login
-      </Button>
-    </Box>
+      </Text>
+    </Flex>
   );
 };
 

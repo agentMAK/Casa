@@ -6,14 +6,14 @@ export function Button(props: any) {
   if (props.variant === "clear") {
     return (
       <CharkaButton
-        backgroundColor={"none"}
-        border={"1px solid #e0e0e0"}
+        backgroundColor={"white"}
+        border={"1px solid #e6e6e6"}
         paddingY={"12px"}
         height={"fit-content"}
         fontWeight={"500"}
         width={"100%"}
-        borderRadius={"36px"}
-        _hover={{ opacity: "80%" }}
+        borderRadius={"16px"}
+        _hover={{ backgroundColor:'#f8f8f8' }}
         {...props}
       >
         {props.children}
@@ -23,14 +23,14 @@ export function Button(props: any) {
 
   return (
     <CharkaButton
-      backgroundColor={"#14213D"}
+      backgroundColor={"#44E9AD"}
       color={"white"}
       height={"fit-content"}
       paddingY={"12px"}
-      width={"100%"}
+      paddingX={'50px'}
       fontWeight={"500"}
-      borderRadius={"36px"}
-      _hover={{ backgroundColor: "#14213D", opacity: "90%" }}
+      borderRadius={"16px"}
+      _hover={{ backgroundColor: "#23996F" }}
       {...props}
     >
       {props.children}

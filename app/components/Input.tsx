@@ -10,6 +10,7 @@ export function Input(props: any) {
       _focusVisible={{ border: "2px solid #14213D" }}
       height={"fit-content"}
       paddingY="12px"
+      borderRadius={'16px'}
       {...props}
     />
   );

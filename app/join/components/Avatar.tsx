@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/types/supabase";
-import { Box, Image, Input, useToast } from "@chakra-ui/react";
+import { Box, Flex, Image, Input, useToast } from "@chakra-ui/react";
 import { FormLabel } from "@/app/components/FormLabel";
 type Profiles = Database["public"]["Tables"]["profiles"]["Row"];
 
@@ -91,12 +91,13 @@ export default function Avatar({ uid, url, size, onUpload }: AvatarType) {
       ) : (
         <Box position={"relative"} width={size} height={size}>
           <FormLabel htmlFor="single" borderRadius={size} cursor="pointer">
-            <Image
-              src={"/images/upload.png"}
-              alt={"upload"}
-              height={size}
-              width={size}
-            />
+            <Flex borderRadius={'150px'} boxSize={'150px'} backgroundColor={'#EDEDED'} alignItems={'center'} justifyContent={'center'}>
+              <Image
+                src={"/images/image.svg"}
+                alt={"upload"}
+                height={'60px'}
+              />
+            </Flex>
           </FormLabel>
           <Input
             position={"absolute"}

@@ -4,13 +4,13 @@ import {
   Box,
   Text,
   Image,
-  Input,
   FormControl,
   FormLabel,
 } from "@chakra-ui/react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/types/supabase";
 import { Button } from "@/app/components/Button";
+import { Input } from "@/app/components/Input";
 
 type LoginType = {
   setEmail: (value: string) => void;
@@ -38,23 +38,21 @@ const Login = ({ setEmail }: LoginType) => {
         >
           Join us 🥳
         </Text>
-        {/* <Text fontSize={"14px"} textAlign={"center"} mb={"5px"}>
+        <Text fontSize={"14px"} textAlign={"center"} mb={"5px"}>
         No spam, our promise 🤝
-      </Text> */}
-      </Box>
-      {/* <FormControl mb="10px">
-        <FormLabel>Email</FormLabel>
-        <Input type="email" placeholder="Enter email address" onChange={(e) => setEmail(e.target.value)} />
-      </FormControl> */}
-      <Button variant={"clear"} width={"100%"} onClick={handleSignInGoogle}>
-        <Image
-          src={"/images/google.svg"}
-          alt={"Google"}
-          height={"20px"}
-          mr={"10px"}
+      </Text>
+      <FormControl>
+        <FormLabel>Phone Number</FormLabel>
+        <Input
+          // onChange={(e: any) => setFirstName(e.target.value)}
+          // value={firstName}
+          // mb={"16px"}
         />
-        Continue with Google
-      </Button>
+        {/* <Button width={"100%"} onClick={() => setCurrentCard("add-photo")}>
+          Continue
+        </Button> */}
+      </FormControl>
+      </Box>
       {/* <Button width={"100%"} onClick={() => setCurrentCard("enter-code")}>
         Continue
       </Button> */}

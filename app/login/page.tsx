@@ -27,7 +27,7 @@ export default function Home() {
     "login-or-signup": <LoginOrSignUp setCurrentCard={setCurrentCard} />,
     login: <Login setEmail={setEmail} />,
     "enter-code": <EnterCode setCurrentCard={setCurrentCard} />,
-    "sign-up": <SignUp setEmail={setEmail} />,
+    "sign-up": <SignUp setEmail={setEmail} setCurrentCard={setCurrentCard} />,
   };
 
   return (

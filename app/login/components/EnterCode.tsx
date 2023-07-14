@@ -2,13 +2,15 @@
 
 import {
   Box,
-  Button,
   Text,
-  Input,
   FormControl,
-  FormLabel,
+  Link,
+  Flex,
 } from "@chakra-ui/react";
 import { LoginCardsType } from "../page";
+import { FormLabel } from "@/app/components/FormLabel";
+import { Input } from "@/app/components/Input";
+import { Button } from "@/app/components/Button";
 
 type EnterCodeType = {
   setCurrentCard: (card: keyof LoginCardsType) => void;
@@ -16,28 +18,29 @@ type EnterCodeType = {
 
 const EnterCode = ({ setCurrentCard }: EnterCodeType) => {
   return (
-    <Box>
+    <Flex flexDirection={'column'} alignItems={'center'}>
       <Text
         fontWeight={"medium"}
-        mb={"5px"}
+        mb={"50px"}
         fontSize={"24px"}
         textAlign={"center"}
       >
-        What&apos;s your code?
+        Enter the code we just texted you
       </Text>
-      <Text fontSize={"14px"} textAlign={"center"} mb={"5px"}>
+      {/* <Text fontSize={"14px"} textAlign={"center"} mb={"5px"}>
         We sent you a temporary login code.
         <br />
         Please check your inbox.
-      </Text>
-      <FormControl mb="10px">
+      </Text> */}
+      <FormControl mb="25px">
         <FormLabel>Login Code</FormLabel>
-        <Input placeholder="Paste login code" />
+        <Input placeholder="Paste login code" mb={'2px'}/>
+        <Text fontSize={'11px'} textAlign={'center'}>Didn&apos;t get it? <Link as={'span'} fontWeight={'medium'}>Tap to resend</Link></Text>
       </FormControl>
-      <Button width={"100%"} onClick={() => {}}>
+      <Button onClick={() => {}}>
         Continue
       </Button>
-    </Box>
+    </Flex>
   );
 };
 

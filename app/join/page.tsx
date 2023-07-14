@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 export type SignUpCardsType = {
   "create-profile": JSX.Element;
   "add-photo": JSX.Element;
+  "username":JSX.Element;
 };
 
 import CreateProfile from "./components/CreateProfile";
@@ -16,6 +17,7 @@ import {
 } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/types/supabase";
 import { useRouter } from "next/navigation";
+import Username from "./components/Username";
 
 export default function Home() {
   const [currentCard, setCurrentCard] =
@@ -67,9 +69,14 @@ export default function Home() {
         setCurrentCard={setCurrentCard}
         firstName={firstName}
         lastName={lastName}
-        username={username}
         setFirstName={setFirstName}
         setLastName={setLastName}
+      />
+    ),
+    "username": (
+      <Username
+        setCurrentCard={setCurrentCard}
+        username={username}
         setUsername={setUsername}
       />
     ),
@@ -79,6 +86,7 @@ export default function Home() {
         uid={session?.user.id}
         avatarPath={avatarPath}
         setAvatarPath={setAvatarPath}
+        setCurrentCard={setCurrentCard}
       />
     ),
   };

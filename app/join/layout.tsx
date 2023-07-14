@@ -19,11 +19,14 @@ export default async function RootLayout({
 
   const { data: profileData, error: profileError } = await supabase
     .from("profiles")
-    .select();
+    .select()
+    .eq("user_id", session?.user.id);
 
   if (profileData && profileData?.length === 0 && session) {
     return <>{children}</>;
   }
+
+
 
   redirect("/login");
 }

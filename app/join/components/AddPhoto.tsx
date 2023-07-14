@@ -3,11 +3,14 @@
 import { Box, Text, Flex } from "@chakra-ui/react";
 import { Button } from "@/app/components/Button";
 import Avatar from "./Avatar";
+import { SignUpCardsType } from "../page";
 type AddPhotoType = {
   handleSubmit: () => void;
   uid: string | undefined;
   avatarPath: string;
   setAvatarPath: (avatarPath: string) => void;
+  setCurrentCard: (card: keyof SignUpCardsType) => void;
+  
 };
 
 const AddPhoto = ({
@@ -15,9 +18,10 @@ const AddPhoto = ({
   uid,
   avatarPath,
   setAvatarPath,
+  setCurrentCard
 }: AddPhotoType) => {
   return (
-    <Box>
+    <Flex flexDirection={'column'} alignItems={'center'}>
       <Box mb={"50px"}>
         <Text
           fontWeight={"medium"}
@@ -31,7 +35,7 @@ const AddPhoto = ({
           Showcase yourself
         </Text>
       </Box>
-      <Flex alignItems={"center"} flexDirection={"column"} mb={"50px"}>
+      <Flex alignItems={"center"} flexDirection={"column"} mb={"25px"}>
         <Avatar
           uid={uid as string}
           url={avatarPath}
@@ -42,10 +46,10 @@ const AddPhoto = ({
         />
       </Flex>
 
-      <Button width={"100%"} onClick={handleSubmit}>
+      <Button onClick={handleSubmit}>
         Complete Profile
       </Button>
-    </Box>
+    </Flex>
   );
 };
 
